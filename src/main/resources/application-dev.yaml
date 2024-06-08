@@ -1,0 +1,69 @@
+server:
+  port: 8080
+
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:db
+    username: admin
+    password: admin
+    hikari:
+      pool-name: H2-HikariPool
+      maximum-pool-size: 5
+      connection-timeout: 20000
+  jpa:
+#    show-sql: true # To Show SQL Queries in Console only
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        use_sql_comments: true
+  flyway:
+    enabled: true # To Enable/Disable Flyway Migration on Application Start
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+  batch:
+    jdbc:
+      initialize-schema: always # never - will not create schema, always - will create schema if not exists, embedded - will create schema if not exists
+      isolation-level-for-create: default
+    job:
+      enabled: false # To Enable/Disable Batch Job Execution on Application Start
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+    filter: true
+    operations-sorter: alpha
+    tags-sorter: alpha
+    groups-order: asc
+    layout: BaseLayout # DefaultLayout, StackedLayout, DocExpansion, ListLayout, DeepLinking, DisplayOperationId, DefaultModelsExpandDepth, DefaultModelExpandDepth, DefaultModelRendering, DisplayRequestDuration, DocExpansion, Filter, MaxDisplayedTags, OperationsSorter, ShowExtensions, TagsSorter, UrisSorter
+    display-request-duration: true
+  show-actuator: true
+
+management:
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+    env:
+      show-values: always
+    configprops:
+      show-values: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    env:
+      enabled: true
+    os:
+      enabled: true
+    java:
+      enabled: true
+    build:
+      enabled: true
