@@ -25,7 +25,7 @@ public class CustomStepListener implements StepExecutionListener {
             log.error("Step is still running {}", stepExecution.getSummary());
         } else if (stepExecution.getStatus().isUnsuccessful()) {
 
-            stepExecution.setExitStatus(new ExitStatus(stepExecution.getExitStatus().getExitCode(), "Step failed"));
+            stepExecution.setExitStatus(new ExitStatus(stepExecution.getExitStatus().getExitCode(), "Step failed".concat(" ").concat(stepExecution.getExitStatus().getExitDescription())));
             log.error("Step failed {}", stepExecution.getSummary());
         } else {
 
@@ -33,20 +33,20 @@ public class CustomStepListener implements StepExecutionListener {
             log.error("Step completed {}", stepExecution.getSummary());
         }
 
-        log.warn("Step execution completed for step: {}", stepExecution.getStepName());
-        log.warn("Step execution status: {}", stepExecution.getStatus());
-        log.warn("Step execution exit status: {}", stepExecution.getExitStatus());
-
-        log.warn("Step execution read count: {}", stepExecution.getReadCount());
-        log.warn("Step execution write count: {}", stepExecution.getWriteCount());
-        log.warn("Step execution commit count: {}", stepExecution.getCommitCount());
-        log.warn("Step execution rollback count: {}", stepExecution.getRollbackCount());
-
-        log.warn("Step execution filter count: {}", stepExecution.getFilterCount());
-        log.warn("Step execution skip count: {}", stepExecution.getSkipCount());
-        log.warn("Step execution process skip count: {}", stepExecution.getProcessSkipCount());
-        log.warn("Step execution read skip count: {}", stepExecution.getReadSkipCount());
-        log.warn("Step execution write skip count: {}", stepExecution.getWriteSkipCount());
+//        log.warn("Step execution completed for step: {}", stepExecution.getStepName());
+//        log.warn("Step execution status: {}", stepExecution.getStatus());
+//        log.warn("Step execution exit status: {}", stepExecution.getExitStatus());
+//
+//        log.warn("Step execution read count: {}", stepExecution.getReadCount());
+//        log.warn("Step execution write count: {}", stepExecution.getWriteCount());
+//        log.warn("Step execution commit count: {}", stepExecution.getCommitCount());
+//        log.warn("Step execution rollback count: {}", stepExecution.getRollbackCount());
+//
+//        log.warn("Step execution filter count: {}", stepExecution.getFilterCount());
+//        log.warn("Step execution skip count: {}", stepExecution.getSkipCount());
+//        log.warn("Step execution process skip count: {}", stepExecution.getProcessSkipCount());
+//        log.warn("Step execution read skip count: {}", stepExecution.getReadSkipCount());
+//        log.warn("Step execution write skip count: {}", stepExecution.getWriteSkipCount());
 
         log.warn("Step execution summary: {}", stepExecution.getSummary());
 

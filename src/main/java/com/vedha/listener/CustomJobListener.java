@@ -25,7 +25,7 @@ public class CustomJobListener implements JobExecutionListener {
             log.error("Job is still running {}", jobExecution.getJobInstance());
         } else if (jobExecution.getStatus().isUnsuccessful()) {
 
-            jobExecution.setExitStatus(new ExitStatus(jobExecution.getExitStatus().getExitCode(), "Job failed"));
+            jobExecution.setExitStatus(new ExitStatus(jobExecution.getExitStatus().getExitCode(), "Job failed".concat(" ").concat(jobExecution.getExitStatus().getExitDescription())));
             log.error("Job failed {}", jobExecution.getJobInstance());
         } else {
 

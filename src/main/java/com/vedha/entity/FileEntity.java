@@ -8,31 +8,26 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@ToString
 @Builder
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "organizations")
-public class OrganizationEntity {
+@Table(name = "files")
+public class FileEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String fileName;
 
-    private String website;
+    private String fileType;
 
-    private String country;
+    private Long fileSize;
 
-    private String description;
-
-    private String founded;
-
-    private String industry;
-
-    private Long employees;
+    @Lob
+    private byte[] fileData;
 
     @Override
     public final boolean equals(Object o) {
@@ -41,7 +36,7 @@ public class OrganizationEntity {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        OrganizationEntity that = (OrganizationEntity) o;
+        FileEntity that = (FileEntity) o;
         return getId() != null && Objects.equals(getId(), that.getId());
     }
 

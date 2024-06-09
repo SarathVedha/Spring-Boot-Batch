@@ -9,19 +9,23 @@ spring:
     url: jdbc:h2:mem:db
     username: admin
     password: admin
+    name: H2
+    driver-class-name: org.h2.Driver
     hikari:
       pool-name: H2-HikariPool
-      maximum-pool-size: 5
+      maximum-pool-size: 10
       connection-timeout: 20000
   jpa:
 #    show-sql: true # To Show SQL Queries in Console only
     open-in-view: true
     hibernate:
       ddl-auto: update
-#    properties:
-#      hibernate:
-#        format_sql: true
-#        use_sql_comments: true
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+    database: h2
+    database-platform: org.hibernate.dialect.H2Dialect
   flyway:
     enabled: true # To Enable/Disable Flyway Migration on Application Start
     baseline-on-migrate: true
